@@ -23,7 +23,13 @@ export function wrappingInputRule(regexp, nodeType, getAttrs, joinPredicate) {
     let tr = state.tr.delete(start, end)
     let $start = tr.doc.resolve(start), range = $start.blockRange(), wrapping = range && findWrapping(range, nodeType, attrs)
     if (range) {
-      console.log(`start: ${start}, range.start: ${range.start}, range.end: ${range.end}, nodeType: ${nodeType.name}, wrapping: ${wrapping.type.name}, ${JSON.stringify(wrapping.attrs)}`);
+      console.log(`start: ${start}, range.start: ${range.start}, range.end: ${range.end}, nodeType: ${nodeType.name}`);
+      if(wrapping) {
+        console.log(`wrapping: length[${wrapping.length}], ${wrapping[0].type.name}, ${JSON.stringify(wrapping[0].attrs)}`);
+      }
+      else{
+        console.log('wrapping undefined');
+      }
     }
     else {
       console.log(`start: ${start}, range undefined.`);
